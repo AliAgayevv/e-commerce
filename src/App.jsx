@@ -11,7 +11,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={[<Landing/>, <LatestProducts/>]} />
-        <Route path="/home" element={<Landing />} />
+        <Route path="/home" element={[<Landing/>, <LatestProducts/>]} />
         <Route path="/products" element={<LatestProducts />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<div>Page Not Found</div>} />
