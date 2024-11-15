@@ -28,7 +28,6 @@ export default function AboutUs() {
             <AboutUsCart name={"Electronics"} imgPath={"./src/assets/imgs/electronics.jpeg"} />
         </div>
         </div>
-
       
 
     </div>
