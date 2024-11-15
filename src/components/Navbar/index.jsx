@@ -10,7 +10,7 @@ const buttonClasses = "flex items-center justify-center gap-2 h-10 border-[1px] 
 
 export default function Navbar() {
     return (
-        <div className='flex justify-between items-center p-6'>
+        <div className='flex justify-between items-center p-6 bg-[#f6f7f9] sticky'>
             <div>
                 <a href='/home'>
                 <h1 className='ml-20 font-bold text-2xl'>
