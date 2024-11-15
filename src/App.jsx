@@ -6,6 +6,7 @@ import LatestProducts from "./components/Latest Produc";
 import Contact from "./components/Contact";
 import Login from "./components/Login";
 import Register from "./components/Register"
+import AboutUs from "./components/AboutUs";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={[<Landing/>, <LatestProducts/>]} />
         <Route path="/home" element={[<Landing/>, <LatestProducts/>]} />
+        <Route path="/about" element={<AboutUs/>} />
         <Route path="/products" element={<LatestProducts />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
