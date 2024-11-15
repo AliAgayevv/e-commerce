@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import Register from "./components/Register"
 import AboutUs from "./components/AboutUs";
 import Footer from "./components/Footer";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="*" element={<div>Page Not Found</div>} />
+        <Route path="*" element={<NotFound/>} />
       </Routes>
       <Footer/>
     </Router>
