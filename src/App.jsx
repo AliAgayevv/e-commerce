@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar";
 import Landing from "./components/Landing";
 import LatestProducts from "./components/Latest Produc";
 import Contact from "./components/Contact";
+import Login from "./components/Login";
+import Register from "./components/Register"
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/home" element={[<Landing/>, <LatestProducts/>]} />
         <Route path="/products" element={<LatestProducts />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="*" element={<div>Page Not Found</div>} />
       </Routes>
     </Router>
