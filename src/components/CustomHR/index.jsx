@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function CustomHR() {
+export default function CustomHR({mtop, w}) {
   return (
-    <div className='mt-5 w-10/12 border-black opacity-25 border-[0.5px] flex mx-auto'/> 
+    <div className={`${mtop} ${w} border-black opacity-25 border-[0.5px] flex mx-auto`}/> 
   )
 }

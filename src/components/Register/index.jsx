@@ -37,7 +37,8 @@ const Register = () => {
   return (
     <div className="flex flex-col items-center justify-center">
       <h1 className="text-4xl mt-10 font-medium">Register</h1>
-      <CustomHR />
+      <CustomHR mtop={"mt-5"} w={"w-11/12"} />
+
 
       <form className="flex w-[420px] flex-col mt-10 gap-2" onSubmit={handleSubmit(onSubmit)}>
         <p>Full name</p>

@@ -16,7 +16,7 @@ export default function Navbar() {
   const location = useLocation(); 
 
   return (
-    <div className='flex justify-between items-center p-6 bg-[#f6f7f9] sticky top-0'>
+    <div className='flex justify-between items-center p-6 bg-[#f6f7f9] sticky top-0 z-[99999999]'>
       <div>
         <Link to='/'>
           <h1 className='ml-20 font-bold text-2xl'>

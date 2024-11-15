@@ -30,7 +30,7 @@ export default function AboutUs() {
             <h1 className='text-center text-4xl'>
                 About Us
             </h1>
-            <CustomHR />
+            <CustomHR mtop={"mt-5"} w={"w-11/12"}/>
 
             <div className='w-11/12 mx-auto mt-5'>
                 <p className='text-xl font-light text-center'>

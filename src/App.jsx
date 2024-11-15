@@ -9,6 +9,7 @@ import Register from "./components/Register";
 import AboutUs from "./components/AboutUs";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
+import Bucket from "./components/Bucket"
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function MainRoutes() {
       <Routes>
         <Route path="/" element={[<Landing />, <LatestProducts />]} />
         <Route path="/home" element={[<Landing />, <LatestProducts />]} />
+        <Route path="/bucket" element={<Bucket/>} />
+
         <Route path="/about" element={<AboutUs />} />
         <Route path="/products" element={<LatestProducts />} />
         <Route path="/contact" element={<Contact />} />
