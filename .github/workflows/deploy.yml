@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v3  # Updated to v3 if necessary
         with:
           name: build-artifacts
-          path: ./dist
+          path: ../../src/assets/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
