@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 import Bucket from "./components/Bucket"
 import { CartProvider } from "./context/cartContext";
+import Checkout from "./components/Checkout";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Navbar />
         <MainRoutes />
       </Router>
+      <Footer />
     </CartProvider >
   );
 }
@@ -32,6 +34,7 @@ function MainRoutes() {
       <Routes>
         <Route path="/" element={[<Landing />, <LatestProducts />]} />
         <Route path="/home" element={[<Landing />, <LatestProducts />]} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/bucket" element={<Bucket/>} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/products" element={<LatestProducts />} />
