@@ -33,7 +33,6 @@ function MainRoutes() {
         <Route path="/" element={[<Landing />, <LatestProducts />]} />
         <Route path="/home" element={[<Landing />, <LatestProducts />]} />
         <Route path="/bucket" element={<Bucket/>} />
-
         <Route path="/about" element={<AboutUs />} />
         <Route path="/products" element={<LatestProducts />} />
         <Route path="/contact" element={<Contact />} />
