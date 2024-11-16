@@ -20,27 +20,26 @@ function App() {
         <Navbar />
         <MainRoutes />
       </Router>
-      <Footer />
     </CartProvider >
   );
 }
 
 function MainRoutes() {
   const location = useLocation(); 
-  const isNotFoundPage = !["/", "/home", "/about", "/products", "/contact", "/login", "/register"].includes(location.pathname);
+  const isNotFoundPage = !["/", "/home", "/about", "/products", "/contact", "/login", "/register", "/checkout", "/bucket"].includes(location.pathname);
 
   return (
     <>
       <Routes>
         <Route path="/" element={[<Landing />, <LatestProducts />]} />
-        <Route path="/home" element={[<Landing />, <LatestProducts />]} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/bucket" element={<Bucket/>} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/products" element={<LatestProducts />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="home" element={[<Landing />, <LatestProducts />]} />
+        <Route path="checkout" element={<Checkout />} />
+        <Route path="bucket" element={<Bucket/>} />
+        <Route path="about" element={<AboutUs />} />
+        <Route path="products" element={<LatestProducts />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 

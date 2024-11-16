@@ -23,7 +23,7 @@ const producstCount = cart.reduce((acc, item) => acc + item.quantity, 0)
   return (
     <div className='flex justify-between items-center p-6 bg-[#f6f7f9] sticky top-0 z-[9999]'>
       <div>
-        <Link to='/'>
+      <Link to='/'>
           <h1 className='ml-20 font-bold text-2xl'>
             React Ecommerce
           </h1>
