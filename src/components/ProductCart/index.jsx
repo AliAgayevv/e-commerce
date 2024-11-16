@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import CustomHR from '../CustomHR';
 import { CartContext } from '../../context/cartContext';
 
@@ -8,15 +8,28 @@ export default function ProductCart({ id, imgPath, name, desc, price }) {
   const truncatedName = name.length > 15 ? `${name.substring(0, 15)}...` : name;
   const truncatedDesc = desc.length > 50 ? `${desc.substring(0, 50)}...` : desc;
 
+  const [showNotification, setShowNotification] = useState(false);
+
   const { addToCart } = useContext(CartContext);
 
   const handleAddToCart = () => {
-    const product = { id, imgPath, name, price }; // Ürünün tüm bilgilerini ekliyoruz
+    const product = { id, imgPath, name, price };
     addToCart(product);
+
+    setShowNotification(true)
+
+    setTimeout(() => {
+      setShowNotification(false)
+    },2000)
   };
 
   return (
     <div className='flex flex-col justify-center items-center border-2 text-center p-4 w-[430px]'> 
+      {showNotification && (
+  <div className=" top-10 right-[700px] bg-green-500 text-white text-sm px-4 py-2 rounded shadow-md animate-fadeIn z-[9999999999] fixed">
+    Added to Cart
+  </div>
+)}
       <div className='w-full h-[300px] flex items-center justify-center overflow-hidden'>
         <img className='max-w-[300px] max-h-[300px] object-contain' src={imgPath} alt={name} /> 
       </div>

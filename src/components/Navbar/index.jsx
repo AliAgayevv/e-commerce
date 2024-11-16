@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FiLogIn } from "react-icons/fi";
 import { MdShoppingCart } from "react-icons/md";
 import { FaUserPlus } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
+import { CartContext } from '../../context/cartContext';
 
 const navbarElements = [
   { name: "Home", path: "/" },
@@ -13,10 +14,14 @@ const navbarElements = [
 const buttonClasses = `flex items-center justify-center gap-2 h-10 border-[1px] border-black rounded-lg p-2`;
 
 export default function Navbar() {
+
+const {cart} = useContext(CartContext)
+
+const producstCount = cart.reduce((acc, item) => acc + item.quantity, 0)
   const location = useLocation(); 
 
   return (
-    <div className='flex justify-between items-center p-6 bg-[#f6f7f9] sticky top-0 z-[99999999]'>
+    <div className='flex justify-between items-center p-6 bg-[#f6f7f9] sticky top-0 z-[9999]'>
       <div>
         <Link to='/'>
           <h1 className='ml-20 font-bold text-2xl'>
@@ -70,7 +75,7 @@ export default function Navbar() {
             }`}
           >
             <MdShoppingCart />
-            Cart(0)
+            Cart ({producstCount})
           </button>
         </Link>
       </div>
