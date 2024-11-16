@@ -10,13 +10,16 @@ import AboutUs from "./components/AboutUs";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 import Bucket from "./components/Bucket"
+import { CartProvider } from "./context/cartContext";
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <MainRoutes />
-    </Router>
+    <CartProvider>
+      <Router>
+        <Navbar />
+        <MainRoutes />
+      </Router>
+    </CartProvider >
   );
 }
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CustomHR from '../CustomHR';
-import ProductCart from '../../ProductCart';
+import ProductCart from '../ProductCart';
 
 const classesForButton = "border-2 px-4 py-1 hover:bg-black hover:text-white delay-100 ease-in-out";
 const api = 'https://fakestoreapi.com/products/';
@@ -89,6 +89,7 @@ export default function LatestProducts() {
                   name={product.title}
                   desc={product.description}
                   price={product.price}
+                  id={product.id}
               />
           ))}
         </div>
