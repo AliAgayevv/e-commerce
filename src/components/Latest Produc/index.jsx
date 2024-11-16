@@ -37,7 +37,7 @@ export default function LatestProducts() {
   };
 
   if (loading) {
-    return <p>Loading products...</p>;
+    return <div className='h-screen w-screen'>Loading products...</div>;
   }
 
   return (
