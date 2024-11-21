@@ -30,14 +30,13 @@ const totalPrice = cart.reduce(
             <p>${totalPrice.toFixed(2)}</p>
           </div>
 
-          {location.pathname === "/checkout" ? <></> : 
-          <Link to="/checkout" key="checkout">
-          <button className="mt-6 w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800">
-            Proceed to Checkout
-          </button>
-        </Link>
-          
-          }
+          {location.pathname !== "/checkout" && cart.length > 0 && (
+  <Link to="/checkout" key="checkout">
+    <button className="mt-6 w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800">
+      Proceed to Checkout
+    </button>
+  </Link>
+)}
 
         </div>
   )

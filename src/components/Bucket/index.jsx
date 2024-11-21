@@ -17,11 +17,20 @@ export default function Bucket() {
 
   const handleQuantityChange = (id, quantity) => {
     if (quantity < 1) {
-      removeFromCart(id); // Eğer miktar 1'in altına düşerse ürünü kaldır
+      removeFromCart(id);
     } else {
-      updateCartQuantity(id, quantity); // Miktarı güncelle
+      updateCartQuantity(id, quantity); 
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-xl font-semibold">Loading user information...</p>
+      </div>
+    );
+  }
+
 
   return (
     <div className="mt-5">
