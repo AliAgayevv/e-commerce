@@ -4,16 +4,17 @@ import { z } from "zod";
 import CustomHR from "../CustomHR";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const schema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
-  password: z.string().min(8),
+  password: z.string().min(8, { message: "Password must be at least 8 characters long" }),
 });
 
 const classesForInput = "border-[1px] rounded h-10 px-0 placeholder:text-black pl-[14px] placeholder:opacity-50";
 
 const Login = () => {
+  const navigate = useNavigate(); 
   const {
     register,
     handleSubmit,
@@ -24,14 +25,19 @@ const Login = () => {
   });
 
   const onSubmit = async (data) => {
-    
     try {
-      await signInWithEmailAndPassword(auth, data.email, data.password)
-      alert("logined")
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+
+
+      navigate("/");
     } catch (error) {
-      setError("root", {
-        message: "This email is already taken",
-      });
+      if (error.code === "auth/user-not-found") {
+        setError("root", { message: "No account found with this email" });
+      } else if (error.code === "auth/wrong-password") {
+        setError("root", { message: "Incorrect password" });
+      } else {
+        setError("root", { message: "An unexpected error occurred" });
+      }
     }
   };
 
@@ -59,12 +65,12 @@ const Login = () => {
         />
         {errors.password && <div className="text-red-500">{errors.password.message}</div>}
 
-        <span className="ml-1 mt-1">New here?  <Link to="/register" key="register">
-            <span className="underline text-[#0dcaf0]">
-                Register
-                </span>
-        </Link></span>
-        
+        <span className="ml-1 mt-1">
+          New here?{" "}
+          <Link to="/register" key="register">
+            <span className="underline text-[#0dcaf0]">Register</span>
+          </Link>
+        </span>
 
         <div className="flex items-center justify-center mt-5">
           <button

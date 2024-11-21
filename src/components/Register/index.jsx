@@ -1,20 +1,23 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../../firebase"; 
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import CustomHR from "../CustomHR";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
+// Form doğrulama için Zod şeması
 const schema = z.object({
-  name: z.string().min(3),
+  name: z.string().min(3, { message: "Name must be at least 3 characters long" }),
   email: z.string().email({ message: "Invalid email address" }),
-  password: z.string().min(8),
+  password: z.string().min(8, { message: "Password must be at least 8 characters long" }),
 });
 
 const classesForInput = "border-[1px] rounded h-10 px-0 placeholder:text-black pl-[14px] placeholder:opacity-50";
 
 const Register = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -26,13 +29,27 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     try {
-      await createUserWithEmailAndPassword(auth, data.email, data.password);
+      const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
+      const user = userCredential.user;
 
-
-    } catch (error) {
-      setError("root", {
-        message: "This email is already taken",
+      await updateProfile(user, {
+        displayName: data.name,
       });
+
+      // Create document from users collection and add empty bucket
+      await setDoc(doc(db, "users", user.uid), {
+        cart: [], 
+        displayName: data.name,
+        email: data.email,
+      });
+
+      navigate("/");
+    } catch (error) {
+      if (error.code === "auth/email-already-in-use") {
+        setError("email", { message: "This email is already in use" });
+      } else {
+        setError("root", { message: "An unexpected error occurred" });
+      }
     }
   };
 

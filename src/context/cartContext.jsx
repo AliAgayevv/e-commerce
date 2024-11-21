@@ -1,49 +1,67 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import { auth, db } from "../firebase";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState(() => {
-    const storedCart = localStorage.getItem("cart");
-    return storedCart ? JSON.parse(storedCart) : [];
-  });
+  const [cart, setCart] = useState([]);
+  const [user, setUser] = useState(null);
 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
+      setUser(currentUser);
 
-  const addToCart = (product) => {
-    setCart((prevCart) => {
-      const existingProduct = prevCart.find((item) => item.id === product.id);
-  
-      const updatedCart = existingProduct
-        ? prevCart.map((item) =>
-            item.id === product.id
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
-          )
-        : [...prevCart, { ...product, quantity: 1 }];
-  
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
-      return updatedCart;
+      if (currentUser) {
+        const userDocRef = doc(db, "users", currentUser.uid);
+        const userSnapshot = await getDoc(userDocRef);
+
+        if (userSnapshot.exists()) {
+          const userData = userSnapshot.data();
+          setCart(userData.cart || []);
+        }
+      }
     });
+
+    return () => unsubscribe();
+  }, []);
+
+  const syncCartToFirestore = async (updatedCart) => {
+    if (user) {
+      const userDocRef = doc(db, "users", user.uid);
+      await updateDoc(userDocRef, { cart: updatedCart });
+    }
   };
 
-  const removeFromCart = (productId) => {
-    setCart((prevCart) => {
-      const updatedCart = prevCart.filter((item) => item.id !== productId);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-      return updatedCart;
+  const addToCart = async (product) => {
+    const updatedCart = cart.map((item) => {
+      if (item.id === product.id) {
+        return { ...item, quantity: item.quantity + 1 }; 
+      }
+      return item;
     });
+
+    if (!cart.some((item) => item.id === product.id)) {
+      updatedCart.push({ ...product, quantity: 1 });
+    }
+
+    setCart(updatedCart);
+    await syncCartToFirestore(updatedCart); 
   };
 
-  const updateCartQuantity = (productId, quantity) => {
-    if (quantity < 1) return;
-  
-    setCart((prevCart) => {
-      const updatedCart = prevCart.map((item) =>
-        item.id === productId ? { ...item, quantity } : item
-      );
-      localStorage.setItem("cart", JSON.stringify(updatedCart)); 
-      return updatedCart; 
-    });
+  const removeFromCart = async (productId) => {
+    const updatedCart = cart.filter((item) => item.id !== productId);
+    setCart(updatedCart);
+    await syncCartToFirestore(updatedCart); 
+  };
+
+  const updateCartQuantity = async (productId, quantity) => {
+    const updatedCart = cart.map((item) =>
+      item.id === productId ? { ...item, quantity } : item
+    );
+
+    setCart(updatedCart);
+    await syncCartToFirestore(updatedCart); 
   };
 
   return (

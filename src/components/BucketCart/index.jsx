@@ -23,23 +23,7 @@ export default function BucketCart({ id, imgPath, name, price }) {
         </div>
       </div>
 
-      <div className="flex items-center">
-        <button
-          className="border px-2 py-1 text-lg"
-          onClick={() => updateCartQuantity(id, quantity - 1)}
-          disabled={quantity <= 1}
-        >
-          -
-        </button>
-        <span className="px-4">{quantity}</span>
-        <button
-          className="border px-2 py-1 text-lg"
-          onClick={() => updateCartQuantity(id, quantity + 1)}
-        >
-          +
-        </button>
-      </div>
-
+      
       <button
         onClick={() => removeFromCart(id)}
         className="text-red-500 border px-2 py-1 hover:bg-red-500 hover:text-white ml-4"
