@@ -1,7 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useCallback} from 'react';
 import { FiLogIn } from "react-icons/fi";
 import { MdShoppingCart } from "react-icons/md";
 import { FaUserPlus } from "react-icons/fa";
+import { auth } from '../../firebase';
+import { signOut } from 'firebase/auth';
+import {useAuthState} from "react-firebase-hooks/auth"
 import { Link, useLocation } from "react-router-dom";
 import { CartContext } from '../../context/cartContext';
 
@@ -19,6 +22,13 @@ const {cart} = useContext(CartContext)
 
 const producstCount = cart.reduce((acc, item) => acc + item.quantity, 0)
   const location = useLocation(); 
+
+
+  const [user, isLoading] = useAuthState(auth)
+
+  const handleSignOut = useCallback(()=>{
+    signOut(auth)
+  }, [])
 
   return (
     <div className='flex justify-between items-center p-6 bg-[#f6f7f9] sticky top-0 z-[9999]'>
@@ -47,7 +57,7 @@ const producstCount = cart.reduce((acc, item) => acc + item.quantity, 0)
           })}
         </ul>
       </div>
-      <div className='flex gap-5 mr-16'>
+      {user !== null ? (<button className={`${buttonClasses}`} onClick={handleSignOut}>Sign out</button>) : <div className='flex gap-5 mr-16'>
         <Link to='/login'>
           <button
             className={`${buttonClasses} ${
@@ -68,7 +78,10 @@ const producstCount = cart.reduce((acc, item) => acc + item.quantity, 0)
             Register
           </button>
         </Link>
-        <Link to='/bucket'>
+        
+      </div>}
+
+      <Link to='/bucket'>
           <button
             className={`${buttonClasses} ${
               location.pathname === "/bucket" ? "bg-[#343a40] text-white" : ""
@@ -78,7 +91,7 @@ const producstCount = cart.reduce((acc, item) => acc + item.quantity, 0)
             Cart ({producstCount})
           </button>
         </Link>
-      </div>
+      
     </div>
   );
 }

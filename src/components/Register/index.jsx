@@ -1,4 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import CustomHR from "../CustomHR";
@@ -23,10 +25,10 @@ const Register = () => {
   });
 
   const onSubmit = async (data) => {
-    const infos = `Name: ${data.name}\nEmail: ${data.email}\nPassword: ${data.password}`
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000)); 
-        alert(infos)
+      await createUserWithEmailAndPassword(auth, data.email, data.password);
+
+
     } catch (error) {
       setError("root", {
         message: "This email is already taken",

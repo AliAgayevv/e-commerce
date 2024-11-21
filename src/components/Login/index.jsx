@@ -2,6 +2,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import CustomHR from "../CustomHR";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
 import { Link } from "react-router-dom";
 
 const schema = z.object({
@@ -22,10 +24,10 @@ const Login = () => {
   });
 
   const onSubmit = async (data) => {
-    const infos = `Email: ${data.email}\nPassword: ${data.password}`
+    
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
-        alert(infos)
+      await signInWithEmailAndPassword(auth, data.email, data.password)
+      alert("logined")
     } catch (error) {
       setError("root", {
         message: "This email is already taken",
