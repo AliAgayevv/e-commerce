@@ -32,17 +32,17 @@ function MainRoutes() {
   return (
     <>
       <Routes>
-        <Route path="/" element={[<Landing />, <LatestProducts />]} />
-        <Route path="home" element={[<Landing />, <LatestProducts />]} />
-        <Route path="checkout" element={<Checkout />} />
-        <Route path="bucket" element={<Bucket/>} />
-        <Route path="about" element={<AboutUs />} />
-        <Route path="products" element={<LatestProducts />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="forgot-password" element={<ForgotPassword />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/e-commerce/" element={[<Landing />, <LatestProducts />]} />
+        <Route path="/e-commerce/home" element={[<Landing />, <LatestProducts />]} />
+        <Route path="/e-commerce/checkout" element={<Checkout />} />
+        <Route path="/e-commerce/bucket" element={<Bucket/>} />
+        <Route path="/e-commerce/about" element={<AboutUs />} />
+        <Route path="/e-commerce/products" element={<LatestProducts />} />
+        <Route path="/e-commerce/contact" element={<Contact />} />
+        <Route path="/e-commerce/login" element={<Login />} />
+        <Route path="/e-commerce/register" element={<Register />} />
+        <Route path="/e-commerce/forgot-password" element={<ForgotPassword />} />
+        <Route path="/e-commerce/*" element={<NotFound />} />
       </Routes>
 
       {!isNotFoundPage && <Footer />}

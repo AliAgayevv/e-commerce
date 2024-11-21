@@ -9,10 +9,10 @@ import { Link, useLocation } from "react-router-dom";
 import { CartContext } from '../../context/cartContext';
 
 const navbarElements = [
-  { name: "Home", path: "/" },
-  { name: "Products", path: "/products" },
-  { name: "About", path: "/about" },
-  { name: "Contact", path: "/contact" },
+  { name: "Home", path: "/e-commerce/" },
+  { name: "Products", path: "/e-commerce/products" },
+  { name: "About", path: "/e-commerce/about" },
+  { name: "Contact", path: "/e-commerce/contact" },
 ];
 const buttonClasses = `flex items-center justify-center gap-2 h-10 border-[1px] border-black rounded-lg p-2`;
 
@@ -33,7 +33,7 @@ const producstCount = cart.reduce((acc, item) => acc + item.quantity, 0)
   return (
     <div className='flex justify-between items-center p-6 bg-[#f6f7f9] sticky top-0 z-[9999]'>
       <div>
-      <Link to='/'>
+      <Link to='/e-commerce/'>
           <h1 className='ml-20 font-bold text-2xl'>
             React Ecommerce
           </h1>
@@ -58,7 +58,7 @@ const producstCount = cart.reduce((acc, item) => acc + item.quantity, 0)
         </ul>
       </div>
       {user !== null ? (<button className={`${buttonClasses}`} onClick={handleSignOut}>Sign out</button>) : <div className='flex gap-5 mr-16'>
-        <Link to='/login'>
+        <Link to='/e-commerce/login'>
           <button
             className={`${buttonClasses} ${
               location.pathname === "/login" ? "bg-[#343a40] text-white" : ""
@@ -68,7 +68,7 @@ const producstCount = cart.reduce((acc, item) => acc + item.quantity, 0)
             Login
           </button>
         </Link>
-        <Link to='/register'>
+        <Link to='/e-commerce/register'>
           <button
             className={`${buttonClasses} ${
               location.pathname === "/register" ? "bg-[#343a40] text-white" : ""
@@ -81,7 +81,7 @@ const producstCount = cart.reduce((acc, item) => acc + item.quantity, 0)
         
       </div>}
 
-      <Link to='/bucket'>
+      <Link to='/e-commerce/bucket'>
           <button
             className={`${buttonClasses} ${
               location.pathname === "/bucket" ? "bg-[#343a40] text-white" : ""

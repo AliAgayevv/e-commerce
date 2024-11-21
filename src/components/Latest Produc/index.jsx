@@ -11,7 +11,6 @@ export default function LatestProducts() {
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState("all");
 
-  // API'den tüm ürünleri bir kez almak için bir fonksiyon
   const fetchAllProducts = useCallback(async () => {
     setLoading(true);
     try {

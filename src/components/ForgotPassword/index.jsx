@@ -64,7 +64,7 @@ const PasswordReset = () => {
         {errors.root && <div className="text-red-500">{errors.root.message}</div>}
       </form>
       <div className="mt-5">
-      <Link to="/login" key="register">
+      <Link to="/e-commerce/login" key="register">
             <span className="underline text-[#0dcaf0]">Login    </span>
           </Link>
       </div>

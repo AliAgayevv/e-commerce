@@ -5,22 +5,22 @@ import AboutUsCart from "../AboutUsCart"
 const aboutUsData = [
     {
         id: 1,
-        photoPath: "./public/assets/imgs/manclot.jpeg",
+        photoPath: "https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=600",
         title: "Men's Clothing"
     },
     {
         id: 2,
-        photoPath: "./public/assets/imgs/womencloth.jpeg",
+        photoPath: "https://images.pexels.com/photos/7679720/pexels-photo-7679720.jpeg?auto=compress&cs=tinysrgb&w=600",
         title: "Women's Clothing"
     },
     {
         id: 3,
-        photoPath: "./public/assets/imgs/jewelery.webp",
+        photoPath: "https://images.pexels.com/photos/1927259/pexels-photo-1927259.jpeg?auto=compress&cs=tinysrgb&w=600",
         title: "Jewelery"
     },
     {
         id: 4,
-        photoPath: "./public/assets/imgs/electronics.jpeg",
+        photoPath: "https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=600",
         title: "Electronics"
     }]
 

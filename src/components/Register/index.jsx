@@ -43,7 +43,7 @@ const Register = () => {
         email: data.email,
       });
 
-      navigate("/");
+      navigate("/e-commerce/");
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         setError("email", { message: "This email is already in use" });
@@ -87,7 +87,7 @@ const Register = () => {
         />
         {errors.password && <div className="text-red-500">{errors.password.message}</div>}
 
-        <span className="ml-1 mt-1">Already has an account?  <Link to="/login" key="register">
+        <span className="ml-1 mt-1">Already has an account?  <Link to="/e-commerce/login" key="register">
             <span className="underline text-[#0dcaf0]">
                 Login
                 </span>

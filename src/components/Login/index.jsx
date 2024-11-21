@@ -29,7 +29,7 @@ const Login = () => {
       await signInWithEmailAndPassword(auth, data.email, data.password);
 
 
-      navigate("/");
+      navigate("/e-commerce/");
     } catch (error) {
       if (error.code === "auth/user-not-found") {
         setError("root", { message: "No account found with this email" });
@@ -65,12 +65,12 @@ const Login = () => {
         />
         {errors.password && <div className="text-red-500">{errors.password.message}</div>}
 
-        <Link to="/forgot-password">
+        <Link to="/e-commerce/forgot-password">
           <a type="text" className="ml-72 underline underline-offset-2 italic text-[#1cb600]">Forgot Password?</a>
           </Link>
         <span className="ml-1 mt-1">
           New here?{" "}
-          <Link to="/register" key="register">
+          <Link to="/e-commerce/register" key="register">
             <span className="underline text-[#0dcaf0]">Register</span>
           </Link>
         </span>

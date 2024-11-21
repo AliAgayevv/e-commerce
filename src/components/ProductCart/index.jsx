@@ -30,7 +30,7 @@ export default function ProductCart({ id, imgPath, name, desc, price }) {
       
       <div className=" top-10 right-[700px] bg-green-500 text-white text-sm px-4 py-2 rounded shadow-md animate-fadeIn z-[9999999999] fixed">
     <span>Added to 
-    <Link to="/bucket" key={"bucket"}>
+    <Link to="/e-commerce/bucket" key={"bucket"}>
            <span className='underline'> Cart</span>
     </Link>
     </span>
