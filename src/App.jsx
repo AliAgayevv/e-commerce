@@ -17,12 +17,10 @@ import ForgotPassword from "./components/ForgotPassword"
 function App() {
   return (
     <CartProvider>
-  <BrowserRouter basename="/e-commerce">
       <Router>
         <Navbar />
         <MainRoutes />
       </Router>
-      </BrowserRouter>      
     </CartProvider >
   );
 }
