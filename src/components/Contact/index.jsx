@@ -2,6 +2,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import CustomHR from "../CustomHR";
+import { auth } from '../../firebase';
+import {useAuthState} from "react-firebase-hooks/auth"
 
 const schema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -12,6 +14,9 @@ const schema = z.object({
 const classesForInput = "border-[1px] rounded h-10 px-0 placeholder:text-black pl-[14px] placeholder:opacity-50";
 
 const Contact = () => {
+
+  const [user, isLoading] = useAuthState(auth)
+
   const {
     register,
     handleSubmit,
@@ -39,7 +44,9 @@ const Contact = () => {
       <CustomHR mtop={"mt-5"} w={"w-11/12"}/>
 
       <form className="flex w-[420px] flex-col mt-10 gap-2" onSubmit={handleSubmit(onSubmit)}>
-        <p>Name</p>
+        
+        {user === null ? (<div className="flex flex-col gap-2">
+          <p>Name</p>
         <input
           {...register("name")}
           type="text"
@@ -56,6 +63,8 @@ const Contact = () => {
           placeholder="name@example.com"
         />
         {errors.email && <div className="text-red-500">{errors.email.message}</div>}
+        </div>) : <></>}
+        
 
         <p>Message</p>
         <textarea

@@ -5,22 +5,22 @@ import AboutUsCart from "../AboutUsCart"
 const aboutUsData = [
     {
         id: 1,
-        photoPath: "./src/assets/imgs/manclot.jpeg",
+        photoPath: "./public/assets/imgs/manclot.jpeg",
         title: "Men's Clothing"
     },
     {
         id: 2,
-        photoPath: "./src/assets/imgs/womencloth.jpeg",
+        photoPath: "./public/assets/imgs/womencloth.jpeg",
         title: "Women's Clothing"
     },
     {
         id: 3,
-        photoPath: "./src/assets/imgs/jewelery.webp",
+        photoPath: "./public/assets/imgs/jewelery.webp",
         title: "Jewelery"
     },
     {
         id: 4,
-        photoPath: "./src/assets/imgs/electronics.jpeg",
+        photoPath: "./public/assets/imgs/electronics.jpeg",
         title: "Electronics"
     }]
 

@@ -8,9 +8,9 @@ export default function BucketCart({ id, imgPath, name, price }) {
   const quantity = product ? product.quantity : 1;
 
   return (
-    <div className="flex justify-between items-center border-b pb-4">
-      <div className="flex items-center">
-        <img
+    <div className="flex justify-between  items-center">
+      <div className="flex items-center w-96">
+          <img
           src={imgPath}
           alt={name}
           className="w-20 h-20 object-contain mr-4"
@@ -26,10 +26,12 @@ export default function BucketCart({ id, imgPath, name, price }) {
       
       <button
         onClick={() => removeFromCart(id)}
-        className="text-red-500 border px-2 py-1 hover:bg-red-500 hover:text-white ml-4"
+        className=" text-red-500 border px-2 py-1 hover:bg-red-500 hover:text-white ml-4"
       >
         Remove
       </button>
+
+      
     </div>
   );
 }

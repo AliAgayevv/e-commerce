@@ -88,7 +88,7 @@ const producstCount = cart.reduce((acc, item) => acc + item.quantity, 0)
             }`}
           >
             <MdShoppingCart />
-            Cart ({producstCount})
+            Bucket ({producstCount})
           </button>
         </Link>
       

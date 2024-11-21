@@ -25,7 +25,7 @@ export default function Bucket() {
 
   return (
     <div className="mt-5">
-      <h1 className="text-center text-5xl">Cart</h1>
+    <h1 className="text-center text-5xl">Bucket</h1>
       <CustomHR mtop={"mt-5"} w={"w-11/12"} />
 
       <div className="flex mt-24 gap-10">
@@ -39,7 +39,7 @@ export default function Bucket() {
               <p>Your cart is empty!</p>
             ) : (
               cart.map((item) => (
-                <div key={item.id} className="flex justify-between items-center">
+                <div key={item.id} className="border-b pb-4 flex justify-between items-center">
                   <BucketCart
                     id={item.id}
                     imgPath={item.imgPath}

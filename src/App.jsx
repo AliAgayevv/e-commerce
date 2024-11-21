@@ -12,6 +12,7 @@ import NotFound from "./components/NotFound";
 import Bucket from "./components/Bucket"
 import { CartProvider } from "./context/cartContext";
 import Checkout from "./components/Checkout";
+import ForgotPassword from "./components/ForgotPassword"
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function MainRoutes() {
         <Route path="contact" element={<Contact />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="forgot-password" element={<ForgotPassword />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 

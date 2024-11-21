@@ -4,7 +4,7 @@ export default function
 () {
   return (
     <div className='px-5 rounded relative'>
-        <img src="./src/assets/imgs/main.jpg" alt="" />
+        <img src="./public/assets/imgs/main.jpg" alt="" />
         <div className='flex flex-col gap-3  absolute top-56 left-24 text-white'>
             <p className='font-extralight text-4xl'>
             New Season Arrivals

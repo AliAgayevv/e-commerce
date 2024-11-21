@@ -2,19 +2,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import CustomHR from "../CustomHR";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { Link, useNavigate } from "react-router-dom";
+import { sendPasswordResetEmail } from "firebase/auth";
 
 const schema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
-  password: z.string().min(8, { message: "Password must be at least 8 characters long" }),
 });
 
 const classesForInput = "border-[1px] rounded h-10 px-0 placeholder:text-black pl-[14px] placeholder:opacity-50";
 
-const Login = () => {
-  const navigate = useNavigate(); 
+const PasswordReset = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -26,15 +25,12 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
-      await signInWithEmailAndPassword(auth, data.email, data.password);
-
-
-      navigate("/");
+      await sendPasswordResetEmail(auth, data.email);
+      alert("Password reset email sent. Please check your inbox.");
+      navigate("/login")
     } catch (error) {
       if (error.code === "auth/user-not-found") {
-        setError("root", { message: "No account found with this email" });
-      } else if (error.code === "auth/wrong-password") {
-        setError("root", { message: "Incorrect password" });
+        setError("email", { message: "No account found with this email" });
       } else {
         setError("root", { message: "An unexpected error occurred" });
       }
@@ -43,7 +39,7 @@ const Login = () => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1 className="text-4xl mt-10 font-medium">Login</h1>
+      <h1 className="text-4xl mt-10 font-medium">Password Reset</h1>
       <CustomHR mtop={"mt-5"} w={"w-11/12"} />
 
       <form className="flex w-[420px] flex-col mt-10 gap-2" onSubmit={handleSubmit(onSubmit)}>
@@ -56,40 +52,24 @@ const Login = () => {
         />
         {errors.email && <div className="text-red-500">{errors.email.message}</div>}
 
-        <p>Password</p>
-        <input
-          {...register("password")}
-          type="password"
-          className={classesForInput}
-          placeholder="Password"
-        />
-        {errors.password && <div className="text-red-500">{errors.password.message}</div>}
-
-        <Link to="/forgot-password">
-          <a type="text" className="ml-72 underline underline-offset-2 italic text-[#1cb600]">Forgot Password?</a>
-          </Link>
-        <span className="ml-1 mt-1">
-          New here?{" "}
-          <Link to="/register" key="register">
-            <span className="underline text-[#0dcaf0]">Register</span>
-          </Link>
-        </span>
-
         <div className="flex items-center justify-center mt-5">
           <button
             disabled={isSubmitting}
             type="submit"
             className="hover:cursor-pointer border-2 bg-[#5b5e61] px-5 py-2 rounded-lg outline-none border-none text-white"
-          > 
-            {isSubmitting ? "Loading..." : "Login"}
+          >
+            Send
           </button>
         </div>
         {errors.root && <div className="text-red-500">{errors.root.message}</div>}
       </form>
-      <button>
-      </button>
+      <div className="mt-5">
+      <Link to="/login" key="register">
+            <span className="underline text-[#0dcaf0]">Login    </span>
+          </Link>
+      </div>
     </div>
   );
 };
 
-export default Login;
+export default PasswordReset;
