@@ -17,7 +17,7 @@ import ForgotPassword from "./components/ForgotPassword"
 function App() {
   return (
     <CartProvider>
-  <BrowserRouter>
+  <BrowserRouter basename="/e-commerce">
       <Router>
         <Navbar />
         <MainRoutes />
