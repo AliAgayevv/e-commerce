@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation, BrowserRouter } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Landing from "./components/Landing";
 import LatestProducts from "./components/Latest Produc";
@@ -17,10 +17,12 @@ import ForgotPassword from "./components/ForgotPassword"
 function App() {
   return (
     <CartProvider>
+  <BrowserRouter>
       <Router>
         <Navbar />
         <MainRoutes />
       </Router>
+      </BrowserRouter>      
     </CartProvider >
   );
 }
