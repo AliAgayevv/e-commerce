@@ -5,6 +5,7 @@ import CustomHR from "../CustomHR";
 import { auth } from "../../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { sendPasswordResetEmail } from "firebase/auth";
+import { motion } from "framer-motion";
 
 const schema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -38,7 +39,10 @@ const PasswordReset = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <motion.div className="flex flex-col items-center justify-center"
+    initial={{opacity: 0 }}
+    animate={{opacity: 1}}
+    >
       <h1 className="text-4xl mt-10 font-medium">Password Reset</h1>
       <CustomHR mtop={"mt-5"} w={"w-11/12"} />
 
@@ -68,7 +72,7 @@ const PasswordReset = () => {
             <span className="underline text-[#0dcaf0]">Login    </span>
           </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

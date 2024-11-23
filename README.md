@@ -1,1 +1,0 @@
-Live demo: (https://aliagayevv.github.io/e-commerce/)

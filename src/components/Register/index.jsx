@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import CustomHR from "../CustomHR";
 import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 // Form doğrulama için Zod şeması
 const schema = z.object({
@@ -54,7 +55,10 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <motion.div className="flex flex-col items-center justify-center"
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    >
       <h1 className="text-4xl mt-10 font-medium">Register</h1>
       <CustomHR mtop={"mt-5"} w={"w-11/12"} />
 
@@ -105,7 +109,7 @@ const Register = () => {
         </div>
         {errors.root && <div className="text-red-500">{errors.root.message}</div>}
       </form>
-    </div>
+    </motion.div>
   );
 };
 

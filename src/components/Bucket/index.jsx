@@ -5,6 +5,7 @@ import BucketCart from "../BucketCart";
 import { useAuthState } from "react-firebase-hooks/auth";
 import OrderSum from "../OrderSum";
 import { auth } from "../../firebase";
+import { motion } from "framer-motion";
 
 export default function Bucket() {
   const [user, isLoading] = useAuthState(auth);
@@ -33,7 +34,10 @@ export default function Bucket() {
 
 
   return (
-    <div className="mt-5">
+    <motion.div className="mt-5"
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    >
     <h1 className="text-center text-5xl">Bucket</h1>
       <CustomHR mtop={"mt-5"} w={"w-11/12"} />
 
@@ -48,7 +52,9 @@ export default function Bucket() {
               <p>Your cart is empty!</p>
             ) : (
               cart.map((item) => (
-                <div key={item.id} className="border-b pb-4 flex justify-between items-center">
+                <motion.div key={item.id} className="border-b pb-4 flex justify-between items-center"
+                initial={{opacity: 0, translateY: "-40%"}}
+                animate={{opacity: 1, translateY: "0"}}>
                   <BucketCart
                     id={item.id}
                     imgPath={item.imgPath}
@@ -70,7 +76,7 @@ export default function Bucket() {
                       +
                     </button>
                   </div>
-                </div>
+                </motion.div>
               ))
             )}
           </div>
@@ -78,6 +84,6 @@ export default function Bucket() {
 
         <OrderSum totalPrice={totalPrice} />
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -4,6 +4,7 @@ import { z } from "zod";
 import CustomHR from "../CustomHR";
 import { auth } from '../../firebase';
 import {useAuthState} from "react-firebase-hooks/auth"
+import {motion} from "framer-motion"
 
 const schema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -39,7 +40,10 @@ const Contact = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <motion.div className="flex flex-col items-center justify-center"
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    >
       <h1 className="text-4xl mt-10 font-medium">Contact Us</h1>
       <CustomHR mtop={"mt-5"} w={"w-11/12"}/>
 
@@ -85,7 +89,7 @@ const Contact = () => {
         </div>
         {errors.root && <div className="text-red-500">{errors.root.message}</div>}
       </form>
-    </div>
+    </motion.div>
   );
 };
 

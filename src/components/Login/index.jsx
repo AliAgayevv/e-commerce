@@ -5,6 +5,7 @@ import CustomHR from "../CustomHR";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { Link, useNavigate } from "react-router-dom";
+import {motion} from "framer-motion"
 
 const schema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -42,7 +43,10 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <motion.div className="flex flex-col items-center justify-center"
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    >
       <h1 className="text-4xl mt-10 font-medium">Login</h1>
       <CustomHR mtop={"mt-5"} w={"w-11/12"} />
 
@@ -88,7 +92,7 @@ const Login = () => {
       </form>
       <button>
       </button>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import CustomHR from '../CustomHR'
 import AboutUsCart from "../AboutUsCart"
+import { motion } from 'framer-motion'
 
 const aboutUsData = [
     {
@@ -26,7 +27,11 @@ const aboutUsData = [
 
 export default function AboutUs() {
     return (
-        <div className='flex flex-col mt-10'>
+        <motion.div className='flex flex-col mt-10'
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}
+        
+        >
             <h1 className='text-center text-4xl'>
                 About Us
             </h1>
@@ -43,17 +48,20 @@ export default function AboutUs() {
                     Our Products
                 </h2>
 
-                <div className='flex items-center justify-center gap-6 mt-8'>
+                <motion.div className='flex items-center justify-center gap-6 mt-8'
+                initial={{opacity: 0, translateY: "-40%"}}
+                animate={{opacity: 1, translateY: "0"}}
+                >
                     {
                         aboutUsData.map((item) => {
                             return <AboutUsCart name={item.title} imgPath={item.photoPath} />
                         })
 
                     }
-                </div>
+                </motion.div>
             </div>
 
 
-        </div>
+        </motion.div>
     )
 }

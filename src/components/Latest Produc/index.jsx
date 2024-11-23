@@ -1,22 +1,35 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import CustomHR from '../CustomHR';
 import ProductCart from '../ProductCart';
+import { motion } from 'framer-motion';
 
 const classesForButton = "border-2 px-4 py-1 hover:bg-black hover:text-white delay-100 ease-in-out";
 const api = 'https://fakestoreapi.com/products/';
 
+// Framer
+const container = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
 export default function LatestProducts() {
-  const [allProducts, setAllProducts] = useState([]); 
+  const [allProducts, setAllProducts] = useState([]);
   const [products, setProducts] = useState([]); // Filtered products
   const [loading, setLoading] = useState(true);
-  const [category, setCategory] = useState("all");
+  const [category, setCategory] = useState("All");
 
   const fetchAllProducts = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch(api);
       const data = await response.json();
-      setAllProducts(data); 
+      setAllProducts(data);
       setProducts(data); // for initial, all products show on the screen
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -25,7 +38,7 @@ export default function LatestProducts() {
     }
   }, []);
 
-  // When website initialized, all product show 
+  // When website initialized, all product show
   useMemo(() => {
     fetchAllProducts();
   }, []);
@@ -34,11 +47,11 @@ export default function LatestProducts() {
   const handleCategoryChange = (newCategory) => {
     setCategory(newCategory);
 
-    if (newCategory === "all") {
-      setProducts(allProducts); 
+    if (newCategory === "All") {
+      setProducts(allProducts);
     } else {
       const filteredProducts = allProducts.filter((item) => item.category === newCategory);
-      setProducts(filteredProducts); 
+      setProducts(filteredProducts);
     }
   };
 
@@ -55,39 +68,24 @@ export default function LatestProducts() {
       <CustomHR w={"w-10/12"} mtop={"mt-5"} />
 
       <div className='flex gap-4 justify-center items-center mt-10 mb-10'>
-        <button
-          className={`${classesForButton} ${category === "all" ? "bg-black text-white" : ""}`}
-          onClick={() => handleCategoryChange("all")}
-        >
-          All
-        </button>
-        <button
-          className={`${classesForButton} ${category === "men's clothing" ? "bg-black text-white" : ""}`}
-          onClick={() => handleCategoryChange("men's clothing")}
-        >
-          Men's Clothing
-        </button>
-        <button
-          className={`${classesForButton} ${category === "women's clothing" ? "bg-black text-white" : ""}`}
-          onClick={() => handleCategoryChange("women's clothing")}
-        >
-          Women's Clothing
-        </button>
-        <button
-          className={`${classesForButton} ${category === "jewelery" ? "bg-black text-white" : ""}`}
-          onClick={() => handleCategoryChange("jewelery")}
-        >
-          Jewelery
-        </button>
-        <button
-          className={`${classesForButton} ${category === "electronics" ? "bg-black text-white" : ""}`}
-          onClick={() => handleCategoryChange("electronics")}
-        >
-          Electronics
-        </button>
+        {["All", "men's clothing", "women's clothing", "jewelery", "electronics"].map((cat) => (
+          <button
+            key={cat}
+            className={`${classesForButton} ${category === cat ? "bg-black text-white" : ""}`}
+            onClick={() => handleCategoryChange(cat)}
+          >
+            {cat === "All" ? "All" : cat}
+          </button>
+        ))}
       </div>
 
-      <div className='grid grid-cols-3 gap-10 w-11/12 mx-auto mt-5'>
+
+      <motion.div
+        className='grid grid-cols-3 gap-10 w-11/12 mx-auto mt-5'
+        initial="hidden"
+        animate="visible"
+        variants={container}
+      >
         {products.map((product) => (
           <ProductCart
             key={product.id}
@@ -98,7 +96,7 @@ export default function LatestProducts() {
             id={product.id}
           />
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }

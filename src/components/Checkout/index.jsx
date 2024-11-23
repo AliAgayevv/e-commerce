@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { motion } from 'framer-motion';
 import { Link } from "react-router-dom";
 
 
@@ -49,7 +50,10 @@ export default function Checkout() {
         }
     };
     return (
-        <div className='mt-5'>
+        <motion.div className='mt-5'
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}
+        >
             <h1 className="text-center text-5xl">Checkout</h1>
             <CustomHR mtop={"mt-5"} w={"w-11/12"} />
 
@@ -187,6 +191,6 @@ export default function Checkout() {
                 <OrderSum />
             </div>
 
-        </div>
+        </motion.div>
     )
 }
