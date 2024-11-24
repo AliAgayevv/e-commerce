@@ -2,6 +2,9 @@ import React, { useState, useMemo, useCallback } from 'react';
 import CustomHR from '../CustomHR';
 import ProductCart from '../ProductCart';
 import { motion } from 'framer-motion';
+import { data } from 'autoprefixer';
+import { CartContext } from '../../context/cartContext';
+import { useContext } from 'react';
 
 const classesForButton = "border-2 px-4 py-1 hover:bg-black hover:text-white delay-100 ease-in-out";
 const api = 'https://fakestoreapi.com/products/';
@@ -19,10 +22,10 @@ const container = {
 };
 
 export default function LatestProducts() {
-  const [allProducts, setAllProducts] = useState([]);
   const [products, setProducts] = useState([]); // Filtered products
   const [loading, setLoading] = useState(true);
-  const [category, setCategory] = useState("All");
+
+  const {allProducts, setAllProducts, category, setCategory} = useContext(CartContext);
 
   const fetchAllProducts = useCallback(async () => {
     setLoading(true);
@@ -36,6 +39,8 @@ export default function LatestProducts() {
     } finally {
       setLoading(false);
     }
+
+
   }, []);
 
   // When website initialized, all product show

@@ -13,14 +13,15 @@ import Bucket from "./components/Bucket"
 import { CartProvider } from "./context/cartContext";
 import Checkout from "./components/Checkout";
 import ForgotPassword from "./components/ForgotPassword"
+import ProductDetails from "./components/ProductDetails";
 
 function App() {
   return (
     <CartProvider>
-      <Router>
-        <Navbar />
-        <MainRoutes />
-      </Router>
+        <Router>
+            <Navbar />
+            <MainRoutes />
+        </Router>
     </CartProvider >
   );
 }
@@ -38,6 +39,7 @@ function MainRoutes() {
         <Route path="/e-commerce/bucket" element={<Bucket/>} />
         <Route path="/e-commerce/about" element={<AboutUs />} />
         <Route path="/e-commerce/products" element={<LatestProducts />} />
+        <Route path="/e-commerce/products/:id" element={<ProductDetails/>} />
         <Route path="/e-commerce/contact" element={<Contact />} />
         <Route path="/e-commerce/login" element={<Login />} />
         <Route path="/e-commerce/register" element={<Register />} />

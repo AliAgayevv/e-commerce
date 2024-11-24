@@ -12,7 +12,6 @@ export default function BucketCart({ id, imgPath, name, price }) {
       <div className="flex items-center w-96">
           <img
           src={imgPath}
-          alt={name}
           className="w-20 h-20 object-contain mr-4"
         />
         <div>

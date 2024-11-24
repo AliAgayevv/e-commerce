@@ -6,7 +6,11 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
   const [user, setUser] = useState(null);
+  const [id, setId] =  useState(0);
+  const [category, setCategory] = useState("All");
+  
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
@@ -32,6 +36,11 @@ export const CartProvider = ({ children }) => {
       await updateDoc(userDocRef, { cart: updatedCart });
     }
   };
+
+  const setProductId = (product) => {
+    setId(product.id)
+
+  }
 
   const addToCart = async (product) => {
     const updatedCart = cart.map((item) => {
@@ -66,7 +75,7 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, updateCartQuantity }}
+      value={{ cart, id ,addToCart, setAllProducts, allProducts ,removeFromCart, updateCartQuantity, setCategory, category, setProductId }}
     >
       {children}
     </CartContext.Provider>

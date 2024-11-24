@@ -8,7 +8,7 @@ export default function NotFound() {
             <p className='text-5xl'>
                 404: Page Not Found
             </p>
-            <Link to="/" key="home">
+            <Link to="/e-commerce/" key="home">
 
                 <div className='flex-row flex items-center hover:bg-black hover:text-white delay-100 ease-out justify-center gap-2 border-[1px] mt-8 rounded-lg p-2 border-black'>
                     <FaArrowLeft />
