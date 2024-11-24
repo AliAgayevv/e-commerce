@@ -22,6 +22,10 @@ const container = {
 };
 
 export default function LatestProducts() {
+  window.scrollTo({
+    top:0,
+    behavior: "smooth"
+})
   const [products, setProducts] = useState([]); // Filtered products
   const [loading, setLoading] = useState(true);
 

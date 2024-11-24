@@ -28,7 +28,7 @@ function App() {
 
 function MainRoutes() {
   const location = useLocation(); 
-  const isNotFoundPage = !["/", "/home", "/about", "/products", "/contact", "/login", "/register", "/checkout", "/bucket"].includes(location.pathname);
+  const isNotFoundPage = !["/e-commerce/", "/e-commerce/home", "/e-commerce/about", "/e-commerce/products", "/e-commerce/contact", "/e-commerce/login", "/e-commerce/register", "/e-commerce/checkout", "/e-commerce/bucket"].includes(location.pathname);
 
   return (
     <>
