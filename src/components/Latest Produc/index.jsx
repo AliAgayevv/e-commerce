@@ -10,7 +10,6 @@ const classesForButton =
   "border-2 px-4 py-1 hover:bg-black hover:text-white delay-100 ease-in-out";
 const api = "https://fakestoreapi.com/products/";
 
-// Framer motion animations
 const container = {
   hidden: { opacity: 0 },
   visible: {
@@ -23,25 +22,23 @@ const container = {
 };
 
 export default function LatestProducts() {
-
-  const [products, setProducts] = useState([]); // Filtered products
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [searchOpen, setSearchOpen] = useState(false); // Toggle state for search box
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const { allProducts, setAllProducts, category, setCategory } =
     useContext(CartContext);
 
-  const searchRef = useRef(null); // Ref to detect outside clicks
+  const searchRef = useRef(null);
 
-  // Fetch products from API
   const fetchAllProducts = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch(api);
       const data = await response.json();
       setAllProducts(data);
-      setProducts(data); // for initial, all products show on the screen
+      setProducts(data);
     } catch (error) {
       console.error("Error fetching products:", error);
     } finally {
@@ -49,15 +46,12 @@ export default function LatestProducts() {
     }
   }, [setAllProducts]);
 
-  // Fetch products on component mount
   useMemo(() => {
     fetchAllProducts();
-  }, []);
+  }, [fetchAllProducts]);
 
-  // Filter by category
   const handleCategoryChange = (newCategory) => {
     setCategory(newCategory);
-
     if (newCategory === "All") {
       setProducts(allProducts);
     } else {
@@ -68,11 +62,10 @@ export default function LatestProducts() {
     }
   };
 
-  // Close search box on outside click
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
-        setSearchOpen(false); // Close search box`
+        setSearchOpen(false);
       }
     };
 
@@ -84,29 +77,26 @@ export default function LatestProducts() {
   }, []);
 
   if (loading) {
-    return <div className="h-screen w-screen">Loading products...</div>;
+    return <div className="h-screen w-screen flex items-center justify-center">Loading products...</div>;
   }
 
   return (
-    <div className="mt-14">
-      <h1 className="text-center text-5xl font-light">Latest Products</h1>
+    <div className="mt-10 px-4 md:px-10 lg:px-20 overflow-x-hidden">
+      <h1 className="text-center text-3xl md:text-4xl font-light">Latest Products</h1>
 
-      {/* Search Bar */}
       <div
         className="flex justify-center items-center my-5 relative group"
         ref={searchRef}
       >
         <div
           className="relative flex items-center"
-          onClick={() => setSearchOpen(!searchOpen)} // Toggle search box
+          onClick={() => setSearchOpen(!searchOpen)}
         >
-          {/* Search Icon */}
           <FaSearch
             className={`absolute left-3 text-gray-500 cursor-pointer transition-opacity duration-300 ${
               searchOpen ? "opacity-100" : "opacity-100"
             }`}
           />
-          {/* Search Input */}
           <input
             className={`outline-none rounded-lg pl-10 py-2 ${
               searchOpen ? "w-48" : "w-10 group-hover:w-48"
@@ -120,10 +110,9 @@ export default function LatestProducts() {
         </div>
       </div>
 
-      <CustomHR w={"w-10/12"} mtop={"mt-5"} />
+      <CustomHR w={"w-full"} mtop={"mt-5"} />
 
-      {/* Category Buttons */}
-      <div className="flex gap-4 justify-center items-center mt-10 mb-10">
+      <div className="flex flex-wrap justify-center gap-3 md:gap-5 mt-10 mb-10">
         {[
           "All",
           "men's clothing",
@@ -143,9 +132,8 @@ export default function LatestProducts() {
         ))}
       </div>
 
-      {/* Product Grid */}
       <motion.div
-        className="grid grid-cols-3 gap-10 w-11/12 mx-auto mt-5"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 w-full mx-auto mt-5 "
         initial="hidden"
         animate="visible"
         variants={container}

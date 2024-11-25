@@ -1,20 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 
 export default function NotFound() {
-    return (
-        <div className='bg-[#f6f7f9] w-10/12 h-52 mt-10 mx-auto flex flex-col items-center justify-center'>
-            <p className='text-5xl'>
-                404: Page Not Found
-            </p>
-            <Link to="/e-commerce/" key="home">
+  return (
+    <div className="bg-[#f6f7f9] w-full h-screen flex flex-col items-center justify-center px-4">
+      {/* 404 Message */}
+      <p className="text-2xl sm:text-4xl lg:text-5xl text-center font-bold mb-6">
+        404: Page Not Found
+      </p>
 
-                <div className='flex-row flex items-center hover:bg-black hover:text-white delay-100 ease-out justify-center gap-2 border-[1px] mt-8 rounded-lg p-2 border-black'>
-                    <FaArrowLeft />
-                    Go Back to Home
-                </div>
-            </Link>
+      {/* Back to Home Button */}
+      <Link to="/e-commerce/" key="home">
+        <div className="flex items-center justify-center gap-2 px-4 py-2 text-sm sm:text-base lg:text-lg border border-black rounded-lg hover:bg-black hover:text-white transition ease-out duration-200">
+          <FaArrowLeft />
+          Go Back to Home
         </div>
-    )
+      </Link>
+    </div>
+  );
 }
