@@ -47,7 +47,7 @@ export default function ProductDetails() {
   };
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="overflow-x-hidden">
       {showNotification && (
         <div className="top-10 right-[10%] bg-green-500 text-white text-sm px-4 py-2 rounded shadow-md animate-fadeIn z-50 fixed">
           <span>
