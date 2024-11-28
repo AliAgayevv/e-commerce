@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import CustomHR from '../CustomHR';
 import { CartContext } from '../../context/cartContext';
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,11 +9,14 @@ const item = {
   visible: { opacity: 1, translateY: 0, transition: { duration: 0.5, ease: "easeInOut" } },
 };
 
+
 const classesForButton = "border-2 p-2 bg-black text-white rounded-lg hover:bg-[#424649] delay-100 ease-in-out outline-none border-none";
 
 export default function ProductCart({ id, imgPath, name, desc, price }) {
 
   const navigate = useNavigate(); 
+
+
 
   const truncatedName = name.length > 15 ? `${name.substring(0, 15)}...` : name;
   const truncatedDesc = desc.length > 50 ? `${desc.substring(0, 50)}...` : desc;
@@ -28,8 +31,11 @@ export default function ProductCart({ id, imgPath, name, desc, price }) {
     
     navigate(`/e-commerce/products/${id}`);
 
-
   }
+
+  
+
+  
 
   const handleAddToCart = () => {
     const product = { id, imgPath, name, price };

@@ -28,7 +28,7 @@ const PasswordReset = () => {
     try {
       await sendPasswordResetEmail(auth, data.email);
       alert("Password reset email sent. Please check your inbox.");
-      navigate("/login")
+      navigate("/e-commerce/login")
     } catch (error) {
       if (error.code === "auth/user-not-found") {
         setError("email", { message: "No account found with this email" });

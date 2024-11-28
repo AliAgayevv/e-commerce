@@ -6,8 +6,7 @@ import { motion } from "framer-motion";
 const aboutUsData = [
   {
     id: 1,
-    photoPath:
-      "https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=600",
+    photoPath: "https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=600",
     title: "Men's Clothing",
   },
   {
